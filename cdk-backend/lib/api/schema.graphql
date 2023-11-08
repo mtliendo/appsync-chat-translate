@@ -1,0 +1,59 @@
+type User
+	@model
+	@auth(
+		rules: [
+			{ allow: owner, operations: [read, update] }
+			{ allow: public, provider: iam, operations: [create] }
+		]
+	) {
+	id: ID!
+	owner: String! @auth(rules: [{ allow: owner, operations: [read] }])
+	displayName: String!
+	email: String!
+	profilePicId: String!
+	preferredLanguage: String! # should be an enum of supported languages 🙃
+}
+
+type Conversation
+	@model
+	@auth(rules: [{ allow: private, operations: [create, read, update] }]) {
+	id: ID!
+	name: String!
+	participants: [String]!
+	messages: [Message]! @hasMany
+}
+
+type Message
+	@model
+	@auth(
+		rules: [
+			{ allow: private, operations: [create, read, update] }
+			{ allow: owner }
+		]
+	) {
+	id: ID!
+	content: MessageContent!
+	translatedContent: MessageContent
+}
+
+type MessageContent {
+	text: String!
+	language: String! # should be an enum of supported languages 🙃
+}
+
+input translateMessageInput {
+	text: String!
+	sourceLanguage: String!
+	destinationLanguage: String
+	conversationMessagesId: String!
+}
+
+type Mutation {
+	translateMessage(input: translateMessageInput!): Message!
+		@aws_cognito_user_pools
+}
+
+type Subscription {
+	onTranslateMessage(conversationId: String!): Message
+		@aws_subscribe(mutations: ["translateMessage"])
+}
