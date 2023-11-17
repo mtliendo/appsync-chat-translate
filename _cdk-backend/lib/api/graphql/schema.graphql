@@ -3,12 +3,18 @@ type User
 	@auth(
 		rules: [
 			{ allow: owner, operations: [read, update] }
+			{ allow: private, operations: [read] }
 			{ allow: public, provider: iam, operations: [create] }
 		]
 	) {
 	id: ID!
-	owner: String! @auth(rules: [{ allow: owner, operations: [read] }])
-	displayName: String!
+	owner: String!
+		@auth(
+			rules: [
+				{ allow: owner, operations: [read] }
+				{ allow: private, operations: [read] }
+			]
+		)
 	email: String!
 	preferredLanguage: String! # should be an enum of supported languages 🙃
 }

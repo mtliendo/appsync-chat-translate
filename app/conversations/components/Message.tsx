@@ -1,4 +1,4 @@
-import { Message } from '@/_cdk-backend/lib/api/graphql/src/API'
+import { Message } from '@/_cdk-backend/lib/api/graphql/API'
 import {
 	Card,
 	Flex,
@@ -31,7 +31,6 @@ export const MessageItem = ({
 				<View>
 					<Flex>
 						<Heading level={5} color={isMyMsg ? 'white' : 'black'}>
-							{msg.owner}{' '}
 							<Text
 								color={isMyMsg ? 'white' : 'black'}
 								fontSize={'12px'}
@@ -43,7 +42,7 @@ export const MessageItem = ({
 						</Heading>
 					</Flex>
 
-					<TextMessage isMyMsg={isMyMsg} msgContent={msg.prompt} />
+					<TextMessage isMyMsg={isMyMsg} msgContent={msg} />
 				</View>
 			</Flex>
 		</Card>
@@ -55,11 +54,11 @@ const TextMessage = ({
 	msgContent,
 }: {
 	isMyMsg: boolean
-	msgContent: string
+	msgContent: Message
 }) => {
 	return (
 		<Text display={'inline'} color={isMyMsg ? 'white' : 'black'}>
-			{msgContent}{' '}
+			{isMyMsg ? msgContent.content.text : msgContent.translatedContent?.text}
 		</Text>
 	)
 }
@@ -69,6 +68,7 @@ type MessageListProps = {
 	myUsername: string
 }
 export const MessageList = ({ messages, myUsername }: MessageListProps) => {
+	console.log('the messages fo rthe convo', messages)
 	return (
 		<Flex
 			flex="1"

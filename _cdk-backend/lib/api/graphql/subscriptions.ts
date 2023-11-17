@@ -39,7 +39,6 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
   onCreateUser(filter: $filter, owner: $owner) {
     id
     owner
-    displayName
     email
     preferredLanguage
     createdAt
@@ -58,7 +57,6 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
   onUpdateUser(filter: $filter, owner: $owner) {
     id
     owner
-    displayName
     email
     preferredLanguage
     createdAt
@@ -77,7 +75,6 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
   onDeleteUser(filter: $filter, owner: $owner) {
     id
     owner
-    displayName
     email
     preferredLanguage
     createdAt

@@ -29,14 +29,12 @@ export type MessageContent = {
 export type UpdateUserInput = {
   id: string,
   owner?: string | null,
-  displayName?: string | null,
   email?: string | null,
   preferredLanguage?: string | null,
 };
 
 export type ModelUserConditionInput = {
   owner?: ModelStringInput | null,
-  displayName?: ModelStringInput | null,
   email?: ModelStringInput | null,
   preferredLanguage?: ModelStringInput | null,
   and?: Array< ModelUserConditionInput | null > | null,
@@ -88,7 +86,6 @@ export type User = {
   __typename: "User",
   id: string,
   owner: string,
-  displayName: string,
   email: string,
   preferredLanguage: string,
   createdAt: string,
@@ -188,7 +185,6 @@ export type DeleteMessageInput = {
 export type CreateUserInput = {
   id?: string | null,
   owner: string,
-  displayName: string,
   email: string,
   preferredLanguage: string,
 };
@@ -196,7 +192,6 @@ export type CreateUserInput = {
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   owner?: ModelStringInput | null,
-  displayName?: ModelStringInput | null,
   email?: ModelStringInput | null,
   preferredLanguage?: ModelStringInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
@@ -235,7 +230,6 @@ export type ModelMessageFilterInput = {
 
 export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  displayName?: ModelSubscriptionStringInput | null,
   email?: ModelSubscriptionStringInput | null,
   preferredLanguage?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionUserFilterInput | null > | null,
@@ -321,7 +315,6 @@ export type UpdateUserMutation = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,
@@ -339,7 +332,6 @@ export type DeleteUserMutation = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,
@@ -549,7 +541,6 @@ export type CreateUserMutation = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,
@@ -566,7 +557,6 @@ export type GetUserQuery = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,
@@ -587,7 +577,6 @@ export type ListUsersQuery = {
       __typename: "User",
       id: string,
       owner: string,
-      displayName: string,
       email: string,
       preferredLanguage: string,
       createdAt: string,
@@ -758,7 +747,6 @@ export type OnCreateUserSubscription = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,
@@ -776,7 +764,6 @@ export type OnUpdateUserSubscription = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,
@@ -794,7 +781,6 @@ export type OnDeleteUserSubscription = {
     __typename: "User",
     id: string,
     owner: string,
-    displayName: string,
     email: string,
     preferredLanguage: string,
     createdAt: string,

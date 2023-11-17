@@ -27,9 +27,9 @@ exports.handler = async (event: PostConfirmationConfirmSignUpTriggerEvent) => {
 		Item: {
 			__typename: 'User',
 			id: user.sub,
+			owner: user.sub,
 			createdAt: isoDate,
 			updatedAt: isoDate,
-			username: event.userName,
 			email: user.email,
 			preferredLanguage: user['custom:preferred_lang'],
 		},

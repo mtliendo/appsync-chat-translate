@@ -1,12 +1,12 @@
 import { Flex, Menu, useBreakpointValue } from '@aws-amplify/ui-react'
 import { useState } from 'react'
 import { RoomList } from './RoomList'
-import { Conversation } from '@/_cdk-backend/lib/api/graphql/src/API'
+import { Conversation } from '@/_cdk-backend/lib/api/graphql/API'
 
 type ConversationBarProps = {
 	rooms: [] | Conversation[]
 	onRoomChange: (roomId: string) => void
-	handleAddRoom: (room: Conversation) => void
+	handleAddRoom: (room: string) => void
 }
 export const ConversationBar = ({
 	rooms,

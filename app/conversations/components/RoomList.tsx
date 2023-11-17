@@ -1,10 +1,4 @@
-import {
-	Conversation,
-	CreateConversationMutation,
-	CreateConversationMutationVariables,
-} from '@/_cdk-backend/lib/api/graphql/API'
-import { createConversation } from '@/_cdk-backend/lib/api/graphql/mutations'
-import { GraphQLQuery } from '@aws-amplify/api'
+import { Conversation } from '@/_cdk-backend/lib/api/graphql/API'
 import {
 	Table,
 	TableBody,
@@ -14,13 +8,12 @@ import {
 	TextField,
 	View,
 } from '@aws-amplify/ui-react'
-import { API } from 'aws-amplify'
 import { useState } from 'react'
 
 type RoomListProps = {
 	rooms: Conversation[] | []
 	handleMenuToggle: (id: string) => void
-	handleAddRoom: (room: Conversation) => void
+	handleAddRoom: (room: string) => void
 }
 export const RoomList = ({
 	handleMenuToggle,
@@ -31,22 +24,9 @@ export const RoomList = ({
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const variables: CreateConversationMutationVariables = {
-			input: {
-				name: roomName,
-				participants: [],
-			},
-		}
-		const { data } = await API.graphql<
-			GraphQLQuery<CreateConversationMutation>
-		>({
-			query: createConversation,
-			variables,
-		})
-		if (data?.createConversation) {
-			handleAddRoom(data.createConversation)
-		}
+
 		setRoomName('')
+		handleAddRoom(roomName)
 	}
 
 	return (
@@ -78,7 +58,7 @@ export const RoomList = ({
 								handleMenuToggle(room.id)
 							}}
 						>
-							<TableCell>{room.title}</TableCell>
+							<TableCell>{room.name}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>

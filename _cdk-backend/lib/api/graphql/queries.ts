@@ -12,7 +12,6 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     owner
-    displayName
     email
     preferredLanguage
     createdAt
@@ -30,7 +29,6 @@ export const listUsers = /* GraphQL */ `query ListUsers(
     items {
       id
       owner
-      displayName
       email
       preferredLanguage
       createdAt
