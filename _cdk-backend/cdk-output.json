@@ -1,0 +1,16 @@
+{
+  "SampleTranslatChatStack": {
+    "awsAppsyncApiEndpoint": "https://uxsvug7a3vbydastvcuhbuoitm.appsync-api.us-east-1.amazonaws.com/graphql",
+    "appSyncDefaultAuthType": "AMAZON_COGNITO_USER_POOLS",
+    "userPoolWebClientId": "3kpgega3vvbtdijh7eh9acepc8",
+    "awsAppsyncApiId": "ekvolfhw5naujmvn333hgwfkd4",
+    "awsAppsyncAuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "appSyncEndpoint": "https://uxsvug7a3vbydastvcuhbuoitm.appsync-api.us-east-1.amazonaws.com/graphql",
+    "amplifyApiModelSchemaS3Uri": "s3://sampletranslatchatstack-appsyncchattranslateamplif-2e74jjr9fsir/model-schema.graphql",
+    "awsAppsyncAdditionalAuthenticationTypes": "AWS_IAM",
+    "region": "us-east-1",
+    "userPoolId": "us-east-1_CA6yRDTAF",
+    "identityPoolId": "us-east-1:3ebdb9be-f163-4133-a17c-ae3813764da3",
+    "awsAppsyncRegion": "us-east-1"
+  }
+}

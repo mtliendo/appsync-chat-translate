@@ -5,6 +5,7 @@ import {
 import { RemovalPolicy } from 'aws-cdk-lib'
 import {
 	AccountRecovery,
+	StringAttribute,
 	UserPool,
 	UserPoolClient,
 	VerificationEmailStyle,
@@ -28,6 +29,13 @@ export function createCognitoAuth(scope: Construct, props: CognitoAuthProps) {
 		},
 		accountRecovery: AccountRecovery.EMAIL_ONLY,
 		removalPolicy: RemovalPolicy.RETAIN_ON_UPDATE_OR_DELETE,
+		customAttributes: {
+			preferred_lang: new StringAttribute({
+				mutable: true,
+				minLen: 2,
+				maxLen: 10,
+			}),
+		},
 	})
 
 	const userPoolClient = new UserPoolClient(

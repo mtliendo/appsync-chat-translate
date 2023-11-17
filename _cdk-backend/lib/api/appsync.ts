@@ -7,7 +7,6 @@ import { UserPool } from 'aws-cdk-lib/aws-cognito'
 import { IRole, PolicyStatement } from 'aws-cdk-lib/aws-iam'
 import * as path from 'path'
 import { Code, FunctionRuntime } from 'aws-cdk-lib/aws-appsync'
-import { IBucket } from 'aws-cdk-lib/aws-s3'
 
 type AmplifyGraphQLAPIProps = {
 	appName: string
@@ -24,7 +23,7 @@ export const createAmplifyGraphQLAPI = (
 	const api = new AmplifyGraphqlApi(scope, `${props.appName}`, {
 		apiName: `${props.appName}`,
 		definition: AmplifyGraphqlDefinition.fromFiles(
-			path.join(__dirname, 'schema.graphql')
+			path.join(__dirname, 'graphql/schema.graphql')
 		),
 		authorizationModes: {
 			defaultAuthorizationMode: 'AMAZON_COGNITO_USER_POOLS',

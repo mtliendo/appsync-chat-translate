@@ -10,7 +10,6 @@ type User
 	owner: String! @auth(rules: [{ allow: owner, operations: [read] }])
 	displayName: String!
 	email: String!
-	profilePicId: String!
 	preferredLanguage: String! # should be an enum of supported languages 🙃
 }
 
