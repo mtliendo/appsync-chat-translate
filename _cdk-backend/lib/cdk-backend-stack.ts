@@ -4,7 +4,12 @@ import { createCognitoAuth } from './auth/cognito'
 import { createAmplifyGraphQLAPI } from './api/appsync'
 import { createAddUserFunc } from './functions/addUserPostConfirmation/construct'
 import { CfnUserPool } from 'aws-cdk-lib/aws-cognito'
-import { Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam'
+import {
+	PolicyDocument,
+	PolicyStatement,
+	Role,
+	ServicePrincipal,
+} from 'aws-cdk-lib/aws-iam'
 
 export class CdkBackendStack extends cdk.Stack {
 	constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -29,17 +34,14 @@ export class CdkBackendStack extends cdk.Stack {
 			},
 		})
 
+		addUserFunc.addPermission('CognitoInvokePermission', {
+			principal: new ServicePrincipal('cognito-idp.amazonaws.com'),
+		})
+
 		const l1Pool = auth.userPool.node.defaultChild as CfnUserPool
 		l1Pool.lambdaConfig = {
 			postConfirmation: `arn:aws:lambda:${this.region}:${this.account}:function:${appName}-addUserFunc`,
 		}
-
-		const cognitoLambdaRole = new Role(this, 'CognitoLambdaRole', {
-			assumedBy: new ServicePrincipal('cognito-idp.amazonaws.com'),
-			description: 'Role that allows Cognito to invoke my Lambda function',
-		})
-
-		addUserFunc.grantInvoke(cognitoLambdaRole)
 
 		new cdk.CfnOutput(this, 'region', {
 			value: this.region,

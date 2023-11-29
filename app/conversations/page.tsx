@@ -112,7 +112,9 @@ function ConversationPage({ user, signOut }: ConversationPageProps) {
 			variables,
 		}).subscribe(({ value }) => {
 			console.log(value)
-			setMessages((currMsgs) => [value.data?.onTranslateMessage, ...currMsgs])
+			setMessages(
+				(currMsgs) => [value.data?.onTranslateMessage, ...currMsgs] as Message[]
+			)
 		})
 
 		return () => {
@@ -225,7 +227,7 @@ function ConversationPage({ user, signOut }: ConversationPageProps) {
 							>
 								{currentUsers.map((u: User) => (
 									<option key={u.id} value={u.id}>
-										{u.email} - {u.preferredLanguage}
+										{u.email} - receives in({u.preferredLanguage})
 									</option>
 								))}
 							</SelectField>
@@ -269,7 +271,6 @@ export default withAuthenticator(ConversationPage, {
 					<>
 						<Authenticator.SignUp.FormFields />
 
-						{/* Append & require Terms & Conditions field to sign up  */}
 						<SelectField
 							required
 							label="Select Your Preferred Language"
