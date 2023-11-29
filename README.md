@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AppSync Realtime Chat Translator
+
+[Related AWS Blog post](https://aws.amazon.com/blogs/mobile/connecting-applications-to-generative-ai-presents-new-challenges/)
+
+![example](./readmeImages/app-example.png)
+
+## Overview
+
+AppSync Realtime Chat Translator is an innovative chat application that leverages the power of AWS services to provide a seamless real-time chat experience with built-in translation capabilities. This application is ideal for users seeking to communicate across language barriers effortlessly. It integrates [AWS AppSync](https://aws.amazon.com/appsync/), Amazon Cognito, [Amazon Translate](https://aws.amazon.com/translate/), and DynamoDB, along with a React frontend using NextJS.
+
+![arch-diagram](./readmeImages/arch-diagram.png)
+
+## Features
+
+- **Real-Time Chat:** Utilizes AWS AppSync for efficient, real-time data synchronization.
+- **Automatic Translation:** Integrates Amazon Translate for real-time language translation in chat.
+- **User Authentication:** Securely manages user authentication and authorization using Amazon Cognito.
+- **Data Storage:** Leverages DynamoDB for scalable and reliable data storage.
+- **Seamless UI Experience:** Employs AWS Amplify UI libraries for a user-friendly interface.
+- **Language Preference:** Users can set their preferred language for receiving messages.
+- **Cross-Language Communication:** Allows users to chat in different languages with automatic translation.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js and npm
+- AWS account and AWS CLI configured
+
+### Installation
+
+1. **Clone the Repository:**
+
+2. **Install Dependencies:**
+
+   ```bash
+   cd AppSync-Realtime-Chat-Translator
+   npm install && cd _cdk-backend && npm install
+   ```
+
+3. **Deploy the Backend:**
+
+   - The backend is managed using AWS CDK.
+   - Navigate to the backend directory and deploy using provided NPM script:
+     `npm run deploy`
+
+4. **Run the Application:**
+
+- While in the frontend directory run the following
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Sign Up and Authentication:**
+  - New users can sign up using their email.
+  - A post-confirmation trigger adds the new user to the User table.
+- **Set Language Preference:**
+  - After signing up, users specify their preferred language.
+- **Start Chatting:**
+  - Users can initiate a chat with another user.
+  - Incoming messages are automatically translated to the user's preferred language.
+  - Outgoing messages are translated into the recipient's preferred language.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Architecture
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Frontend:** React application with NextJS.
+- **Backend:** AWS CDK to create and manage AWS resources.
+- **Services Used:**
+  - AWS AppSync for real-time data handling.
+  - Amazon Cognito for user authentication.
+  - Amazon Translate for message translation.
+  - DynamoDB for data storage.
+  - AWS Amplify UI for frontend development.
